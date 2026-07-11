@@ -1,0 +1,24 @@
+# Rotating improvement checklist — the ONLY task source for the maintenance
+# agent (input allowlist: this file + self-generated signals + owner-written
+# outcome history). Owner-edited only.
+#
+# Rotation: the agent workflow reads data-branch checklist_state.json for the
+# cursor, works the current item, and its post-step advances the cursor.
+# A threshold-breaching signal (signals/*.json) overrides the rotation.
+#
+# Hard limits per run: ONE pull request, at most 5 changed files,
+# reasoning required in the PR body.
+
+items:
+  - id: lighthouse
+    task: "Improve the weakest Lighthouse category (performance / a11y / SEO). Cite the score before and after reasoning."
+  - id: dead-links
+    task: "Find and fix dead links or broken images across all pages."
+  - id: dependencies
+    task: "Bump patch-level dependency updates only. Never major versions."
+  - id: meta
+    task: "Check meta tags, Open Graph, and structured data for consistency across pages."
+  - id: copy
+    task: "Fix typos and terminology inconsistency only. Never rewrite narrative copy — the owner's voice is off-limits."
+  - id: code-hygiene
+    task: "Remove unused imports, dead code, duplicated components."

@@ -1,0 +1,41 @@
+name: collect-data
+
+on:
+  schedule:
+    - cron: "0 18 * * *" # 03:00 JST nightly
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data
+          fetch-depth: 1
+      # data branch carries scripts/ + data/ mirrored from main on first setup;
+      # keep collect.py canonical on main and sync here.
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-src
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run collector (stdlib only, no installs)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cp main-src/scripts/collect.py scripts/collect.py 2>/dev/null || mkdir -p scripts && cp main-src/scripts/collect.py scripts/collect.py
+          python3 scripts/collect.py
+      - name: Commit to data branch
+        run: |
+          git config user.name "site-data-bot"
+          git config user.email "actions@github.com"
+          git add data/ scripts/collect.py
+          git diff --cached --quiet || git commit -m "data: nightly refresh"
+          git push origin data

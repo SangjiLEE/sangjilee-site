@@ -1,0 +1,62 @@
+name: maintenance-agent
+
+on:
+  schedule:
+    - cron: "30 21 * * 1,4" # Mon & Thu 06:30 JST — twice weekly (cost cap)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  improve:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Fetch rotation state and outcome history (data branch)
+        run: |
+          git fetch origin data --depth 1 || true
+          git show origin/data:checklist_state.json > /tmp/checklist_state.json 2>/dev/null || echo '{"cursor":0}' > /tmp/checklist_state.json
+          git show origin/data:outcomes.jsonl > /tmp/outcomes.jsonl 2>/dev/null || touch /tmp/outcomes.jsonl
+          tail -20 /tmp/outcomes.jsonl > /tmp/recent_outcomes.jsonl
+
+      - name: Compose prompt (checklist rotation + outcome history)
+        id: prompt
+        run: |
+          python3 .github/scripts/compose_prompt.py \
+            --checklist checklist.yaml \
+            --state /tmp/checklist_state.json \
+            --history /tmp/recent_outcomes.jsonl \
+            --out /tmp/agent_prompt.md
+          echo "prompt_file=/tmp/agent_prompt.md" >> "$GITHUB_OUTPUT"
+
+      - name: Run Claude maintenance agent
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt_file: /tmp/agent_prompt.md
+          # Agent opens a PR from an agent/* branch. main is protected;
+          # a human merges or closes with a written reason.
+
+      - name: Advance rotation cursor (post-step, data branch)
+        if: always()
+        run: |
+          git fetch origin data --depth 1
+          git checkout data
+          python3 - <<'EOF'
+          import json
+          from pathlib import Path
+          p = Path("checklist_state.json")
+          state = json.loads(p.read_text()) if p.exists() else {"cursor": 0}
+          state["cursor"] = (state.get("cursor", 0) + 1) % 6
+          p.write_text(json.dumps(state) + "\n")
+          EOF
+          git config user.name "site-data-bot"
+          git config user.email "actions@github.com"
+          git add checklist_state.json
+          git diff --cached --quiet || git commit -m "agent: advance checklist cursor"
+          git push origin data
