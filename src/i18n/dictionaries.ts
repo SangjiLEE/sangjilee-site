@@ -59,7 +59,7 @@ export interface Dictionary {
 }
 
 const en: Dictionary = {
-  brand: "Portfolio",
+  brand: "My Portfolio",
   meta: {
     title: "Sangji Lee — Technology & Trust",
     description:
@@ -155,7 +155,7 @@ const en: Dictionary = {
 };
 
 const ko: Dictionary = {
-  brand: "포트폴리오",
+  brand: "나의 포트폴리오",
   meta: {
     title: "이상지 — 기술과 신뢰",
     description:
@@ -247,7 +247,7 @@ const ko: Dictionary = {
 };
 
 const ja: Dictionary = {
-  brand: "ポートフォリオ",
+  brand: "私のポートフォリオ",
   meta: {
     title: "李相知（Sangji Lee）— 技術と信頼",
     description:
