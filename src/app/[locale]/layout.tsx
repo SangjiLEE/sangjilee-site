@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { LOCALES, isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { NavLinks } from "@/components/NavLinks";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -45,12 +46,8 @@ export default async function RootLayout({
             <Link href={`/${locale}`} className="font-semibold tracking-tight">
               Sangji Lee
             </Link>
-            <div className="flex items-center gap-6 text-ink-80">
-              {nav.map((n) => (
-                <Link key={n.href} href={n.href} className="hover:text-action">
-                  {n.label}
-                </Link>
-              ))}
+            <div className="flex items-center gap-5 text-ink-80">
+              <NavLinks items={nav} />
               <LanguageSwitcher current={locale as Locale} />
             </div>
           </nav>
