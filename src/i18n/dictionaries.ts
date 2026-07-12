@@ -11,6 +11,11 @@ export interface Dictionary {
     ctaAgent: string;
     liveTitle: string;
     liveDesc: string;
+    more: string;
+    glanceTitle: string;
+    mfShort: string;
+    siteShort: string;
+    agentShort: string;
   };
   widgets: {
     github: string;
@@ -74,6 +79,14 @@ const en: Dictionary = {
     liveTitle: "Live, not static.",
     liveDesc:
       "These numbers refresh nightly via a Python pipeline — no manual updates.",
+    more: "Learn more →",
+    glanceTitle: "At a glance",
+    mfShort:
+      "Real-time multi-portfolio tracker for US/KR/JP stocks and crypto, with AI daily summaries. Built and monetized solo.",
+    siteShort:
+      "This portfolio maintains itself — a nightly Python pipeline plus a Claude agent that proposes improvements as PRs.",
+    agentShort:
+      "Every agent PR — merged or rejected, with reasoning — is public. The governance loop is the exhibit.",
   },
   widgets: {
     github: "GITHUB",
@@ -160,6 +173,14 @@ const ko: Dictionary = {
     liveTitle: "정적이 아니라, 살아있는 사이트.",
     liveDesc:
       "아래 숫자들은 Python 파이프라인이 매일 밤 자동 갱신합니다 — 수동 업데이트 없음.",
+    more: "자세히 보기 →",
+    glanceTitle: "한눈에",
+    mfShort:
+      "미·한·일 주식과 암호자산을 실시간 추적하는 멀티 포트폴리오 트래커. AI 일일 요약 포함, 혼자 만들어 수익화까지.",
+    siteShort:
+      "스스로를 유지보수하는 포트폴리오 — 매일 밤 Python 파이프라인이 돌고, Claude 에이전트가 개선을 PR로 제안합니다.",
+    agentShort:
+      "머지든 거부든, 근거와 함께 모든 에이전트 PR이 공개됩니다. 이 거버넌스 루프가 곧 전시물입니다.",
   },
   widgets: {
     github: "GITHUB",
@@ -243,6 +264,14 @@ const ja: Dictionary = {
     liveTitle: "静的ではなく、生きているサイト。",
     liveDesc:
       "以下の数値はPythonパイプラインが毎晩自動更新します — 手動更新はありません。",
+    more: "詳しく見る →",
+    glanceTitle: "ひと目でわかる",
+    mfShort:
+      "米・韓・日株式と暗号資産をリアルタイムで追跡するマルチポートフォリオトラッカー。AI日次サマリー付き、一人で構築し収益化まで。",
+    siteShort:
+      "自らを保守するポートフォリオ — 毎晩Pythonパイプラインが走り、Claudeエージェントが改善をPRとして提案します。",
+    agentShort:
+      "マージも却下も、根拠とともにすべてのエージェントPRが公開されます。このガバナンスループこそが展示物です。",
   },
   widgets: {
     github: "GITHUB",

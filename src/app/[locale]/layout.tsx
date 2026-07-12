@@ -33,8 +33,8 @@ export default async function RootLayout({
   const dict = getDictionary(locale as Locale);
 
   const nav = [
-    { href: `/${locale}#about`, label: dict.nav.about },
-    { href: `/${locale}#projects`, label: dict.nav.projects },
+    { href: `/${locale}/about`, label: dict.nav.about },
+    { href: `/${locale}/projects`, label: dict.nav.projects },
     { href: `/${locale}/agent`, label: dict.nav.agent },
   ];
 
