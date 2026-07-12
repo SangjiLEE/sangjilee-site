@@ -31,21 +31,15 @@ export default async function Home({
           {dict.home.glanceTitle.toUpperCase()}
         </h2>
 
-        {/* About tile: summary + 4 stats */}
-        <Link
-          href={`/${locale}/about`}
-          className="group mt-4 block rounded-[18px] bg-parchment p-8 transition-colors hover:bg-pearl"
-        >
-          <div className="flex items-baseline justify-between gap-4">
-            <h3 className="text-[22px] font-semibold">{dict.about.title}</h3>
-            <span className="shrink-0 text-[14px] text-action">
-              {dict.home.more}
-            </span>
+        {/* About tile: the whole story lives here — no separate page */}
+        <div className="mt-4 rounded-[18px] bg-parchment p-8">
+          <h3 className="text-[22px] font-semibold">{dict.about.title}</h3>
+          <div className="mt-3 max-w-3xl space-y-4 text-[15px] leading-relaxed text-ink-80">
+            {dict.about.intro.map((p) => (
+              <p key={p.slice(0, 24)}>{p}</p>
+            ))}
           </div>
-          <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-ink-80">
-            {dict.about.intro[0]}
-          </p>
-          <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <div className="mt-7 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {dict.about.results.map((r) => (
               <div key={r.stat}>
                 <p className="text-[26px] font-semibold text-action">
@@ -57,7 +51,28 @@ export default async function Home({
               </div>
             ))}
           </div>
-        </Link>
+          <div className="mt-7 flex flex-wrap gap-2 text-[13px]">
+            {[
+              "AWS",
+              "Azure",
+              "React / Next.js",
+              "Java",
+              "Python",
+              "Kubernetes",
+              "GenAI (AI-102)",
+              "Japanese (JLPT N1)",
+              "English (TOEIC 920)",
+              "Korean (native)",
+            ].map((s) => (
+              <span
+                key={s}
+                className="rounded-full bg-canvas px-3 py-1 text-ink-80"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+        </div>
 
         {/* Projects + agent tiles */}
         <div className="mt-5 grid gap-5 md:grid-cols-3">
