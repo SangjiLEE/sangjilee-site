@@ -1,42 +1,47 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { LiveWidgets } from "@/components/LiveWidgets";
 import { loadSiteData } from "@/lib/data";
+import { isLocale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+  const dict = getDictionary(locale);
   const data = await loadSiteData();
 
   return (
     <>
       <section className="mx-auto max-w-5xl px-5 pb-20 pt-24 text-center">
         <h1 className="hero-display mx-auto max-w-3xl">
-          Someone clients trust with both the technology and the relationship.
+          {dict.home.heroTitle}
         </h1>
-        <p className="lead mx-auto mt-6 max-w-2xl">
-          I&apos;m Sangji Lee — an engineer-turned-consultant in Tokyo. I build
-          production systems, lead a 15-person global team, and run live
-          AI-powered services on the side. Including this site.
-        </p>
+        <p className="lead mx-auto mt-6 max-w-2xl">{dict.home.heroLead}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-4 text-[17px]">
           <Link
-            href="/projects"
+            href={`/${locale}/projects`}
             className="rounded-full bg-action px-6 py-2.5 text-on-dark hover:bg-action-focus"
           >
-            View projects
+            {dict.home.ctaProjects}
           </Link>
-          <Link href="/agent" className="px-4 py-2.5 text-action">
-            How this site maintains itself →
+          <Link href={`/${locale}/agent`} className="px-4 py-2.5 text-action">
+            {dict.home.ctaAgent}
           </Link>
         </div>
       </section>
 
       <section className="bg-parchment px-5 py-16">
         <div className="mx-auto max-w-5xl">
-          <h2 className="display-lg">Live, not static.</h2>
+          <h2 className="display-lg">{dict.home.liveTitle}</h2>
           <p className="mt-2 max-w-2xl text-[17px] text-ink-80">
-            These numbers refresh nightly via a Python pipeline — no manual
-            updates.
+            {dict.home.liveDesc}
           </p>
-          <LiveWidgets data={data} />
+          <LiveWidgets data={data} labels={dict.widgets} />
         </div>
       </section>
     </>
