@@ -1,7 +1,7 @@
 {
-  "tool_name": "mcp__Claude_Browser__computer",
-  "tool_input_preview": "{\"tabId\":\"seed\",\"action\":\"scroll\",\"coordinate\":[800,300],\"scroll_direction\":\"down\",\"scroll_amount\":10}",
-  "error": "computer timed out after 30s. The Browser pane may be stuck (modal dialog, navigation hang, or unresponsive renderer). Check preview_console_logs for errors.",
-  "timestamp": "2026-07-12T06:26:56.845Z",
-  "retry_count": 2
+  "tool_name": "mcp__Claude_Browser__javascript_tool",
+  "tool_input_preview": "{\"tabId\":\"seed\",\"action\":\"javascript_exec\",\"text\":\"location.href = \\\"http://localhost:3000/ko?v=\\\" + Date.now()\"}",
+  "error": "No preview is open. Use preview_start with {\"url\": \"https://…\"} to open a browser tab at a URL, or with {\"name\": \"…\"} to start a dev server from .claude/launch.json.",
+  "timestamp": "2026-07-12T11:34:58.380Z",
+  "retry_count": 1
 }

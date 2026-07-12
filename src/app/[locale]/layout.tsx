@@ -44,7 +44,7 @@ export default async function RootLayout({
         <header className="sticky top-0 z-10 border-b border-hairline bg-canvas/90 backdrop-blur">
           <nav className="mx-auto flex h-12 w-full max-w-5xl items-center justify-between px-5 text-[14px]">
             <Link href={`/${locale}`} className="font-semibold tracking-tight">
-              Sangji Lee
+              {dict.brand}
             </Link>
             <div className="flex items-center gap-5 text-ink-80">
               <NavLinks items={nav} />

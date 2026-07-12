@@ -1,6 +1,7 @@
 import type { Locale } from "./config";
 
 export interface Dictionary {
+  brand: string;
   meta: { title: string; description: string };
   nav: { about: string; projects: string; agent: string };
   footer: { maintained: string; seeLog: string };
@@ -58,6 +59,7 @@ export interface Dictionary {
 }
 
 const en: Dictionary = {
+  brand: "Sangji Lee's Portfolio",
   meta: {
     title: "Sangji Lee — Technology & Trust",
     description:
@@ -153,6 +155,7 @@ const en: Dictionary = {
 };
 
 const ko: Dictionary = {
+  brand: "이상지의 포트폴리오",
   meta: {
     title: "이상지 — 기술과 신뢰",
     description:
@@ -244,6 +247,7 @@ const ko: Dictionary = {
 };
 
 const ja: Dictionary = {
+  brand: "李相知のポートフォリオ",
   meta: {
     title: "李相知（Sangji Lee）— 技術と信頼",
     description:
