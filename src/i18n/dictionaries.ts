@@ -35,6 +35,13 @@ export interface Dictionary {
   about: {
     title: string;
     intro: string[];
+    careerTitle: string;
+    career: {
+      company: string;
+      period: string;
+      role: string;
+      bullets: string[];
+    }[];
     resultsTitle: string;
     results: { stat: string; text: string }[];
     outro: string[];
@@ -110,6 +117,29 @@ const en: Dictionary = {
       "Most companies hire engineers who can build, and people who can manage the customer relationship. The hard part is finding someone clients trust to do both.",
       "That gap — where deep technical understanding meets the customer relationship — is where projects either earn lasting trust or quietly lose it. I've spent 5+ years being the person on both sides of that gap.",
       "I started in code — a full-stack engineer at Fujitsu, shipping production systems in React, Next.js, Java, and Kubernetes. At Accenture I became the technical contact a major e-commerce client relies on — promoted twice in three years, now leading 15 people across 3 domains in Japanese and English.",
+    ],
+    careerTitle: "CAREER",
+    career: [
+      {
+        company: "Accenture",
+        period: "Oct 2023 – Present",
+        role: "Consultant → Associate Manager (promoted twice in 3 years)",
+        bullets: [
+          "Lead the backend of a major e-commerce client across 3 domains — a 15-person team (9 offshore, 6 in Japan), managed in Japanese and English",
+          "Support agentic-AI adoption (incident-response and inquiry agents) as the domain expert — requirements and security advisory, operational data",
+          "Present improvement proposals directly to the client at release judgment meetings; advise department-head (課長-level) stakeholders",
+        ],
+      },
+      {
+        company: "Fujitsu",
+        period: "Apr 2021 – Sep 2023",
+        role: "Full-stack Engineer",
+        bullets: [
+          "Built a large manufacturer's member site and portal in React / Next.js / Nest.js — 17 of 42 screens as sub-leader, on Azure with Kubernetes and microservices",
+          "Migrated an internal API auth flow to OAuth 2.0 Client Credentials (Java / Spring)",
+          "Researched Gaia-X dataspace connectors in English and presented the recommendation to division executives",
+        ],
+      },
     ],
     resultsTitle: "WHAT THAT TRUST LOOKS LIKE, IN RESULTS",
     results: [
@@ -206,6 +236,29 @@ const ko: Dictionary = {
       "깊은 기술 이해와 고객 관계가 만나는 그 틈에서, 프로젝트는 오래가는 신뢰를 얻거나 조용히 잃습니다. 저는 5년 넘게 그 틈의 양쪽에 서 있는 사람이었습니다.",
       "시작은 코드였습니다 — Fujitsu에서 React, Next.js, Java, Kubernetes로 프로덕션 시스템을 만든 풀스택 엔지니어. Accenture에서는 대형 이커머스 고객이 의지하는 기술 창구가 되어 3년간 두 번 조기 승진했고, 지금은 3개 영역 15명을 일본어와 영어로 이끌고 있습니다.",
     ],
+    careerTitle: "경력",
+    career: [
+      {
+        company: "Accenture",
+        period: "2023.10 – 현재",
+        role: "컨설턴트 → Associate Manager (3년간 2회 조기 승진)",
+        bullets: [
+          "대형 이커머스 고객 백엔드 3개 영역 리드 — 15명 팀(해외 9·일본 6)을 일본어·영어로 통괄",
+          "에이전트 AI 도입 지원 (장애대응·문의대응 Agent) — 도메인 전문가로서 요건·보안 자문, 운영 데이터 제공",
+          "릴리스 판정회에서 고객 대상 개선 제안 발표, 課長급 의사결정자 직접 자문",
+        ],
+      },
+      {
+        company: "Fujitsu",
+        period: "2021.04 – 2023.09",
+        role: "풀스택 엔지니어",
+        bullets: [
+          "대형 제조사 회원사이트·포털을 React / Next.js / Nest.js로 개발 — 42화면 중 17화면 서브리더 담당, Azure·Kubernetes·마이크로서비스",
+          "사내 API 인증을 OAuth 2.0 Client Credentials로 개조 (Java / Spring)",
+          "Gaia-X 데이터스페이스 커넥터 영어 기술조사 — 본부장급 대상 방향성 발표",
+        ],
+      },
+    ],
     resultsTitle: "신뢰의 결과, 숫자로",
     results: [
       {
@@ -297,6 +350,29 @@ const ja: Dictionary = {
       "多くの企業には、開発ができるエンジニアと、顧客関係を管理する人が別々にいます。難しいのは、その両方を安心して任せられる人を見つけることです。",
       "深い技術理解と顧客関係が交わるその境界で、プロジェクトは長く続く信頼を得るか、静かに失うかが決まります。私は5年以上、その境界の両側に立ち続けてきました。",
       "出発点はコードでした — 富士通でReact・Next.js・Java・Kubernetesを用いたプロダクションシステムを開発したフルスタックエンジニア。アクセンチュアでは大手EC顧客が頼る技術窓口となり、3年間で2回の早期昇進。現在は3領域15名（海外9名・日本6名）のチームを日本語と英語で統括しています。",
+    ],
+    careerTitle: "職務経歴",
+    career: [
+      {
+        company: "アクセンチュア株式会社",
+        period: "2023年10月 – 現在",
+        role: "コンサルタント → Associate Manager（3年間で2回の早期昇進）",
+        bullets: [
+          "大手EC顧客のバックエンド3領域をリード — 15名チーム（海外9名・日本6名）を日本語と英語で統括",
+          "エージェントAI導入支援（障害対応・問い合わせ対応Agent）— ドメインエキスパートとして要件・セキュリティ観点の助言、運用データの提供",
+          "リリース判定会にてお客様へ改善提案をプレゼンテーション、課長クラスの意思決定者へ直接助言",
+        ],
+      },
+      {
+        company: "富士通株式会社",
+        period: "2021年4月 – 2023年9月",
+        role: "フルスタックエンジニア",
+        bullets: [
+          "大手メーカーの会員サイト・ポータルをReact / Next.js / Nest.jsで開発 — 42画面中17画面をサブリーダーとして担当、Azure・Kubernetes・マイクロサービス",
+          "社内APIの認証をOAuth 2.0 Client Credentials Flowへ改修（Java / Spring）",
+          "Gaia-Xデータスペースコネクターの英語技術調査 — 本部長クラス向けに方針を発表",
+        ],
+      },
     ],
     resultsTitle: "信頼の結果を、数字で",
     results: [

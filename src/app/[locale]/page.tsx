@@ -39,7 +39,40 @@ export default async function Home({
               <p key={p.slice(0, 24)}>{p}</p>
             ))}
           </div>
-          <div className="mt-7 grid grid-cols-2 gap-4 lg:grid-cols-4">
+          {/* Career timeline (source: 職務経歴書) */}
+          <h4 className="mt-9 text-[13px] font-semibold tracking-wide text-ink-48">
+            {dict.about.careerTitle.toUpperCase()}
+          </h4>
+          <div className="mt-4 space-y-6">
+            {dict.about.career.map((c) => (
+              <div
+                key={c.company}
+                className="grid gap-2 border-l-2 border-hairline pl-5 md:grid-cols-[180px_1fr] md:gap-6"
+              >
+                <div>
+                  <p className="text-[15px] font-semibold">{c.company}</p>
+                  <p className="mt-0.5 text-[13px] text-ink-48">{c.period}</p>
+                </div>
+                <div>
+                  <p className="text-[14px] font-semibold text-ink-80">
+                    {c.role}
+                  </p>
+                  <ul className="mt-2 space-y-1.5">
+                    {c.bullets.map((b) => (
+                      <li
+                        key={b.slice(0, 24)}
+                        className="text-[14px] leading-relaxed text-ink-80"
+                      >
+                        · {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-9 grid grid-cols-2 gap-4 lg:grid-cols-4">
             {dict.about.results.map((r) => (
               <div key={r.stat}>
                 <p className="text-[26px] font-semibold text-action">
